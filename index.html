@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css?family=Concert+One|Noto+Sans+JP|Pacifico" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <style>
+    body {
+      background-image: url('bg.png');
+      margin: 0px auto;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .logo {
+      width: 150px;
+    }
+
+    .logo>img {
+      width: 100%;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #ce9a54;
+      text-shadow: 2px 2px #a07744;
+      font-size: 70px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Concert One', cursive;
+      color: #a07744;
+      font-size: 36px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 25px 0px;
+      padding: 0px;
+    }
+
+    .content {
+      font-size: 46px;
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #51331b;
+      width: 100%;
+      margin: 0px 25px;
+      /* padding-bottom: 400px; */
+    }
+
+    .time-name {
+      font-weight: 600;
+    }
+
+    .content>p {
+      font-size: 30px;
+      margin: 0px;
+    }
+
+    .hadits {
+      /* height: 220px; */
+      height: 920px;
+      background: #ce9a54;
+      margin: 0px 20px;
+      opacity: 0.2;
+      border-radius: 6px;
+    }
+
+    .source {
+      font-size: 16px;
+      position: fixed;
+      bottom: 144px;
+      right: 8px;
+    }
+
+    .footer {
+      clear: both;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background: #ce9a54;
+      position: fixed;
+      bottom: 0px;
+      padding: 20px;
+      font-size: 24px;
+      border-top: 15px solid #ad7c43;
+      font-family: 'Concert One', cursive;
+      color: #f4f4f4;
+    }
+
+    .footer>strong {
+      font-size: 30px;
+    }
+
+    .footer>h3 {
+      margin: 4px 0px;
+      padding: 0px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+      </div>
+      <div class="title">
+        <h1>Jadwal Imsakiyah</h1>
+      </div>
+    </div>
+    <div class="sub-header">
+      <h2 class="hijriah-date">1 Ramadhan 1440 H</h2>
+      <h2 class="masehi-date">5 Mei 2019 M</h2>
+    </div>
+    <div class="content">
+      <ul>
+        <li>
+          <span class="time-name">IMSAK</span>
+          <span class="time-value">00:00</span>
+        </li>
+        <li>
+          <span class="time-name">SHUBUH</span>
+          <span class="time-value">00:00</span>
+        </li>
+        <li>
+          <span class="time-name">DZUHUR</span>
+          <span class="time-value">00:00</span>
+        </li>
+        <li>
+          <span class="time-name">ASHAR</span>
+          <span class="time-value">00:00</span>
+        </li>
+        <li>
+          <span class="time-name">MAGHRIB</span>
+          <span class="time-value">00:00</span>
+        </li>
+        <li>
+          <span class="time-name">ISYA</span>
+          <span class="time-value">00:00</span>
+        </li>
+      </ul>
+
+      <div class="hadits">
+
+      </div>
+      <!-- <p>“Barangsiapa yang puasa Ramadhan karena iman dan mengharapkan pahala, akan diampuni dosa-dosanya yang telah
+        lalu.” <strong>(HR. Bukhari [38, 1901, 2014])</strong> -->
+      </p>
+      <span class="source">Sumber: kemenag.go.id</span>
+    </div>
+    <div class="footer">
+      <strong>infopandeglang.com</strong>
+      <h3>Connecting Pandeglang</h3>
+    </div>
+  </div>
+
+
+  <script>
+    $.ajax({
+      url: "https://bimasislam.kemenag.go.id/widget/jadwalshalat/2321b8b362d1b425bd338b9dc862ae2c526c8789",
+      dataType: 'text',
+      success: function (data) {
+        var elements = $("<div>").html(data)[0].getElementsByClassName("waktu-container")[0]
+          .getElementsByClassName("waktu");
+        var currentTimeElements = $(".time-value");
+        console.log(currentTimeElements);
+        var index = 0;
+        for (var i = 0; i < elements.length; i++) {
+          // var theText = elements[i].firstChild.nodeValue; // Do something here } }
+          var title = $.trim(elements[i].getElementsByClassName("title")[0].innerHTML);
+          var time = $.trim(elements[i].getElementsByClassName("pukul")[0].innerHTML);
+          // console.log( != $.trim("TERBIT"));
+          if (title != $.trim("TERBIT") && title != $.trim("DHUHA")) {
+            // console.log(title);
+            // console.log(time);
+            currentTimeElements[index].innerHTML = time;
+            index++;
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
