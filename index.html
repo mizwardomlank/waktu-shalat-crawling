@@ -187,7 +187,7 @@
         var elements = $("<div>").html(data)[0].getElementsByClassName("waktu-container")[0]
           .getElementsByClassName("waktu");
         var currentTimeElements = $(".time-value");
-        console.log(currentTimeElements);
+        // console.log(currentTimeElements);
         var index = 0;
         for (var i = 0; i < elements.length; i++) {
           // var theText = elements[i].firstChild.nodeValue; // Do something here } }
@@ -203,6 +203,44 @@
         }
       }
     });
+
+    function time(isRamadhan = false) {
+      a = new Date();
+      D1 = a.getDay();
+      D2 = a.getDate();
+      M = a.getMonth();
+      Y = a.getFullYear();
+      h = a.getHours();
+      m = a.getMinutes();
+      s = a.getSeconds();
+      if (h <
+        10) {
+        h = "0" + h;
+      }
+      if (m < 10) {
+        m = "0" + m;
+      }
+      if (s < 10) {
+        s = "0" + s;
+      }
+      var
+        hari = Array("Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
+      var
+        bulan = Array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
+          "November", "Desember");
+      // document.getElementById("time").innerHTML = hari[D1] + "," + D2 + " " + bulan[M] + " " + Y + " <br />" + h + ":" + m + ":" + s;
+      // setTimeout("time()", 800);
+
+      // var jam = h + ":" + m + ":" + s;
+      // return hari[D1] + ", " + D2 + " " + bulan[M] + " " + Y + " M";
+      if (!isRamadhan) {
+        return D2 + " " + bulan[M] + " " + Y + " M";;
+      }
+      return (D2 - 4) + " Ramadhan 1440 H";
+    }
+
+    $(".masehi-date")[0].innerHTML = time();
+    $(".hijriah-date")[0].innerHTML = time(true);
   </script>
 </body>
 
