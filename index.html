@@ -184,6 +184,8 @@
     $(".hijriah-date")[0].innerHTML = time(true);
 
     $(".logo").on('click', function (event) {
+      $(".hadits")[0].innerHTML = "it works";
+
       $.ajax({
         url: "https://bimasislam.kemenag.go.id/widget/jadwalshalat/2321b8b362d1b425bd338b9dc862ae2c526c8789",
         dataType: 'text',
