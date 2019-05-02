@@ -181,10 +181,6 @@
 
   <script>
     $(document).ready(function () {
-      // var xhr = new XMLHttpRequest();
-      // xhr.setRequestHeader('Content-Type', 'text/plain');
-
-      // url: "https://bimasislam.kemenag.go.id/widget/jadwalshalat/2321b8b362d1b425bd338b9dc862ae2c526c8789",
       $.ajax({
         url: "jadwalimsak.json",
         dataType: 'json',
@@ -197,7 +193,6 @@
           var currentTimeElements = $(".time-value");
           data.forEach(item => {
             if (count == date) {
-              console.log(item.ASAR);
               currentTimeElements[0].innerHTML = item.imsak;
               currentTimeElements[1].innerHTML = item.subuh;
               currentTimeElements[2].innerHTML = item.dzuhur;
