@@ -80,7 +80,7 @@
     }
 
     .hadits {
-      height: 920px;
+      height: 40vh;
       background: #ce9a54;
       margin: 0px 20px;
       opacity: 0.2;
@@ -189,16 +189,11 @@
         var elements = $("<div>").html(data)[0].getElementsByClassName("waktu-container")[0]
           .getElementsByClassName("waktu");
         var currentTimeElements = $(".time-value");
-        // console.log(currentTimeElements);
         var index = 0;
         for (var i = 0; i < elements.length; i++) {
-          // var theText = elements[i].firstChild.nodeValue; // Do something here } }
           var title = $.trim(elements[i].getElementsByClassName("title")[0].innerHTML);
           var time = $.trim(elements[i].getElementsByClassName("pukul")[0].innerHTML);
-          // console.log( != $.trim("TERBIT"));
           if (title != $.trim("TERBIT") && title != $.trim("DHUHA")) {
-            // console.log(title);
-            // console.log(time);
             currentTimeElements[index].innerHTML = time;
             index++;
           }
