@@ -181,22 +181,32 @@
 
   <script>
     $(document).ready(function () {
+      // var xhr = new XMLHttpRequest();
+      // xhr.setRequestHeader('Content-Type', 'text/plain');
+
+      // url: "https://bimasislam.kemenag.go.id/widget/jadwalshalat/2321b8b362d1b425bd338b9dc862ae2c526c8789",
       $.ajax({
-        url: "https://bimasislam.kemenag.go.id/widget/jadwalshalat/2321b8b362d1b425bd338b9dc862ae2c526c8789",
-        dataType: 'text',
+        url: "jadwalimsak.json",
+        dataType: 'json',
         success: function (data) {
-          var elements = $("<div>").html(data)[0].getElementsByClassName("waktu-container")[0]
-            .getElementsByClassName("waktu");
-          var currentTimeElements = $(".time-value");
-          var index = 0;
-          for (var i = 0; i < elements.length; i++) {
-            var title = $.trim(elements[i].getElementsByClassName("title")[0].innerHTML);
-            var time = $.trim(elements[i].getElementsByClassName("pukul")[0].innerHTML);
-            if (title != $.trim("TERBIT") && title != $.trim("DHUHA")) {
-              currentTimeElements[index].innerHTML = time;
-              index++;
-            }
+          var count = 0;
+          var date = new Date().getDate();
+          if (date - 4 < 0) {
+            date = 0;
           }
+          var currentTimeElements = $(".time-value");
+          data.forEach(item => {
+            if (count == date) {
+              console.log(item.ASAR);
+              currentTimeElements[0].innerHTML = item.imsak;
+              currentTimeElements[1].innerHTML = item.subuh;
+              currentTimeElements[2].innerHTML = item.dzuhur;
+              currentTimeElements[3].innerHTML = item.ashar;
+              currentTimeElements[4].innerHTML = item.magrib;
+              currentTimeElements[5].innerHTML = item.isya;
+            }
+            count++;
+          });
         }
       });
 
