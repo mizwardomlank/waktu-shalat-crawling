@@ -187,9 +187,13 @@
         success: function (data) {
           var count = 0;
           var date = new Date().getDate();
-          if (date - 4 < 0) {
-            date = 0;
+
+          if (date - 5 < 0) {
+            date = 26 + date;
+          } else {
+            date = date - 4;
           }
+          date--;
           var currentTimeElements = $(".time-value");
           data.forEach(item => {
             if (count == date) {
@@ -212,7 +216,7 @@
     function time(isRamadhan = false) {
       a = new Date();
       D1 = a.getDay();
-      D2 = a.getDate();
+      date = a.getDate();
       M = a.getMonth();
       Y = a.getFullYear();
       h = a.getHours();
@@ -233,15 +237,22 @@
       var
         bulan = Array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober",
           "November", "Desember");
-      // document.getElementById("time").innerHTML = hari[D1] + "," + D2 + " " + bulan[M] + " " + Y + " <br />" + h + ":" + m + ":" + s;
+      // document.getElementById("time").innerHTML = hari[D1] + "," + date + " " + bulan[M] + " " + Y + " <br />" + h + ":" + m + ":" + s;
       setTimeout("time()", 800);
 
       // var jam = h + ":" + m + ":" + s;
-      // return hari[D1] + ", " + D2 + " " + bulan[M] + " " + Y + " M";
+      // return hari[D1] + ", " + date + " " + bulan[M] + " " + Y + " M";
       if (!isRamadhan) {
-        return D2 + " " + bulan[M] + " " + Y + " M";;
+        return date + " " + bulan[M] + " " + Y + " M";;
       }
-      return (D2 - 4) + " Ramadhan 1440 H";
+
+      if (date - 5 < 0){
+        date = 26 + date;
+      } else {
+        date = date - 4;
+      }
+
+      return (date) + " Ramadhan 1440 H";
     }
   </script>
 </body>
