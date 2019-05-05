@@ -188,10 +188,10 @@
           var count = 0;
           var date = new Date().getDate();
 
-          if (date - 5 < 0) {
+          if (date - 6 < 0) {
             date = 26 + date;
           } else {
-            date = date - 4;
+            date = date - 5;
           }
           date--;
           var currentTimeElements = $(".time-value");
@@ -246,10 +246,10 @@
         return date + " " + bulan[M] + " " + Y + " M";;
       }
 
-      if (date - 5 < 0){
+      if (date - 6 < 0){
         date = 26 + date;
       } else {
-        date = date - 4;
+        date = date - 5;
       }
 
       return (date) + " Ramadhan 1440 H";
